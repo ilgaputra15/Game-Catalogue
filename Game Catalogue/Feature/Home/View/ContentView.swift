@@ -32,9 +32,9 @@ struct ContentView: View {
                 Spacer(minLength: 24)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach (Gamekeyword.allCases, id: \.self) {keyword in
+                        ForEach(Gamekeyword.allCases, id: \.self) { keyword in
                             Button(action: { self.keyword = keyword }) {
-                            KeywordLable(name: keyword.rawValue, isSelected: self.keyword == keyword)
+                                KeywordLable(name: keyword.rawValue, isSelected: self.keyword == keyword)
                             }
                         }
                     }
