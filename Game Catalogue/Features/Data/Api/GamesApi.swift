@@ -33,7 +33,7 @@ extension GamesApi: BaseApi {
         var param: [String: Any] = [:]
         switch self {
         case .getGames(let platforms):
-            param["platforms"] = platforms
+            param["parent_platforms"] = platforms
             return .requestParameters(parameters: param, encoding: URLEncoding.queryString)
         }
     }

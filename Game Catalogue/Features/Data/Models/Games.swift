@@ -34,12 +34,54 @@ struct Game: Codable, Identifiable {
     }
 }
 
-struct Platforms: Codable {
+enum Gamekeyword: String, CaseIterable {
+    case all = "All Platform"
+    case ps = "PlaySation"
+    case xbox = "XBox"
+    case pc = "PC"
+}
+
+extension Gamekeyword {
+    var value: String {
+        switch self {
+        case .all:
+            return "1,2,3"
+        case .ps:
+            return "2"
+        case .xbox:
+            return "3"
+        case .pc:
+            return "1"
+        }
+    }
+}
+
+struct Platforms: Codable, Identifiable {
+    var id: Int { platform.id }
     let platform: Platform
 }
 
-struct Platform: Codable {
+struct Platform: Codable, Identifiable {
     let id: Int
     let name: String
     let slug: String
+    let imageResName: String?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        slug = try container.decode(String.self, forKey: .slug)
+        let id = try container.decode(Int.self, forKey: .id)
+        switch id {
+        case 1:
+            imageResName = "Windows"
+        case 2:
+            imageResName = "PlayStation"
+        case 3:
+            imageResName = "X-Box"
+        default:
+            imageResName = nil
+        }
+    }
 }

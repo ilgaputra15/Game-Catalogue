@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @ObservedObject private var gameListState = GameListState()
     @State var keyword: Gamekeyword = .all
     var body: some View {
         ZStack {
@@ -33,7 +33,10 @@ struct ContentView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(Gamekeyword.allCases, id: \.self) { keyword in
-                            Button(action: { self.keyword = keyword }) {
+                            Button(action: {
+                                self.keyword = keyword
+                                self.gameListState.loadGames(platforms: self.keyword.value)
+                            }) {
                                 KeywordLable(name: keyword.rawValue, isSelected: self.keyword == keyword)
                             }
                         }
@@ -41,26 +44,23 @@ struct ContentView: View {
                     .padding(.horizontal, 24.0)
                     .padding(.vertical, 4.0)
                 }
-                Spacer(minLength: 20)
+                Spacer(minLength: 16)
                 ScrollView {
-                    ForEach(0..<5) {_ in
-                        GameRow()
-                    }
-                    .padding(.horizontal, 24.0)
+                    GameList(games: self.gameListState.games2Array)
                 }
-                .padding(.bottom, 8.0)
-                
-                Spacer(minLength: 16.0)
                 HStack {
                     Spacer()
-                    Image("test")
+                    Image("Profile")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 60.0, height: 60.0)
+                        .frame(width: 50.0, height: 50.0)
                         .clipped()
-                        .cornerRadius(60)
+                        .cornerRadius(50)
                     Spacer()
-                }
+                }.padding(.vertical, 8.0)
+            }
+            .onAppear {
+                self.gameListState.loadGames(platforms: self.keyword.value)
             }
         }
     }

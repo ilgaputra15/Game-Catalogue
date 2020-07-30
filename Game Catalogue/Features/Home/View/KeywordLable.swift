@@ -13,51 +13,28 @@ struct KeywordLable: View {
     var isSelected: Bool
     var body: some View {
         HStack {
-        if self.isSelected {
-            Text(name)
-                .font(.system(size: 12))
-                .fontWeight(.medium)
-                .foregroundColor(Color.white)
-                .padding(.horizontal, 16.0)
-                .padding(.vertical, 6.0)
-                .background(Color.greyishBrown)
-                .cornerRadius(10)
-                .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.white, lineWidth: 1)
-            )
+            if self.isSelected {
+                Text(name)
+                    .font(.system(size: 12))
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.white)
+                    .padding(.horizontal, 16.0)
+                    .padding(.vertical, 6.0)
+                    .background(Color.greyishBrown)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.white, lineWidth: 1))
             } else {
                 Text(name)
-                .font(.system(size: 12))
-                .fontWeight(.medium)
-                .foregroundColor(Color.brownGrey)
-                .padding(.horizontal, 16.0)
-                .padding(.vertical, 6.0)
-                .background(Color.greyishBrown)
-                .cornerRadius(10)
+                    .font(.system(size: 12))
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.brownGrey)
+                    .padding(.horizontal, 16.0)
+                    .padding(.vertical, 6.0)
+                    .background(Color.greyishBrown)
+                    .cornerRadius(10)
             }
-        }
-    }
-}
-
-enum Gamekeyword: String, CaseIterable {
-    case all = "All Platform"
-    case ps = "PlaySation"
-    case xbox = "XBox"
-    case pc = "PC"
-}
-
-extension Gamekeyword {
-    var value: String {
-        switch self {
-        case .all:
-            return "1,2,3"
-        case .ps:
-            return "1"
-        case .xbox:
-            return "2"
-        case .pc:
-            return "3"
         }
     }
 }

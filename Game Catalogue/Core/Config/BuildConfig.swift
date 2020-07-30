@@ -14,10 +14,6 @@ enum BuildConfig: String {
 
 extension BuildConfig {
     static func getString(key: BuildConfig) -> String {
-        if let value = Bundle.main.object(forInfoDictionaryKey: key.rawValue) as? String {
-            return value
-        } else {
-            return ""
-        }
+        return Bundle.main.object(forInfoDictionaryKey: key.rawValue) as? String ?? ""
     }
 }
