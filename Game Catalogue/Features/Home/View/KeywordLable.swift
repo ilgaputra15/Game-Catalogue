@@ -47,6 +47,21 @@ enum Gamekeyword: String, CaseIterable {
     case pc = "PC"
 }
 
+extension Gamekeyword {
+    var value: String {
+        switch self {
+        case .all:
+            return "1,2,3"
+        case .ps:
+            return "1"
+        case .xbox:
+            return "2"
+        case .pc:
+            return "3"
+        }
+    }
+}
+
 struct KeywordLable_Previews: PreviewProvider {
     static var previews: some View {
        KeywordLable(name: "Ilga", isSelected: false)
