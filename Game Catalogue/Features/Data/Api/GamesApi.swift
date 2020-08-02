@@ -11,6 +11,7 @@ import Moya
 
 enum GamesApi {
     case getGames(_ platforms: String)
+    case getGame(_ id: Int)
 }
 
 extension GamesApi: BaseApi {
@@ -19,12 +20,14 @@ extension GamesApi: BaseApi {
         switch self {
         case .getGames:
             return "/games"
+        case .getGame(let id):
+            return "/games/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case.getGames:
+        case.getGames, .getGame:
             return .get
         }
     }
@@ -35,6 +38,7 @@ extension GamesApi: BaseApi {
         case .getGames(let platforms):
             param["parent_platforms"] = platforms
             return .requestParameters(parameters: param, encoding: URLEncoding.queryString)
+        case .getGame : return .requestPlain
         }
     }
 }

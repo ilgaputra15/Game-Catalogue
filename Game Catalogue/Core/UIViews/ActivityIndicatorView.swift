@@ -10,10 +10,14 @@ import SwiftUI
 
 struct ActivityIndicatorView: UIViewRepresentable {
     var style: UIActivityIndicatorView.Style = .medium
+    var color: UIColor?
     func updateUIView(_ uiView: UIViewType, context: Context) {}
     func makeUIView(context: Context) -> UIActivityIndicatorView {
         let view = UIActivityIndicatorView(style: style)
         view.startAnimating()
+        if let color = color {
+            view.color = color
+        }
         return view
     }
 }

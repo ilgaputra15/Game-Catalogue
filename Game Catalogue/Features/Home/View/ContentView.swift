@@ -9,9 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject private var gameListState = GameListState()
+    @ObservedObject private var gameListState = GamesState()
     @State var keyword: Gamekeyword = .all
     var body: some View {
+        NavigationView {
         ZStack {
             Color.backgroundColor.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 0.0) {
@@ -60,8 +61,14 @@ struct ContentView: View {
                 }.padding(.vertical, 8.0)
             }
             .onAppear {
+                if self.gameListState.games2Array == nil {
                 self.gameListState.loadGames(platforms: self.keyword.value)
+                }
             }
+        }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .buttonStyle(PlainButtonStyle())
         }
     }
 }

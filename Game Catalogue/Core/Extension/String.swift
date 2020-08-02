@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension String {
     func convertDateFormat(from input: String, to output: String) -> String {
         let inputFormatter = DateFormatter()

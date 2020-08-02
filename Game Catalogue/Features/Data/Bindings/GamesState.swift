@@ -9,9 +9,10 @@
 import SwiftUI
 import RxSwift
 
-class GameListState: ObservableObject {
+class GamesState: ObservableObject {
     @Published var games: [Game]?
     @Published var games2Array: [[Game]]?
+    @Published var game: GameDetail?
     
     private let gameService: GameService
     private let disposable: DisposeBag = DisposeBag()
@@ -30,7 +31,21 @@ class GameListState: ObservableObject {
                 case .success(let data):
                     self.games = data.results
                     self.games2Array = self.convertArrayToArrays(games: data.results)
-                    print(self.games2Array)
+                    print(self.games2Array ?? "")
+                case .error(let error):
+                    print(error)
+                }
+        }.disposed(by: disposable)
+    }
+    
+    func loadGame(id: Int) {
+        self.game = nil
+        gameService.getGame(id: id)
+            .subscribe { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let data):
+                    self.game = data
                 case .error(let error):
                     print(error)
                 }

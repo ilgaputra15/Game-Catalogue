@@ -13,6 +13,10 @@ extension Game {
         let response: GamesResponse? = try? Bundle.main.loadAndDecodeJson(fileName: "game_list")
         return response!.results
     }
+    static var stubbedGame: GameDetail {
+        let response: GameDetail? = try? Bundle.main.loadAndDecodeJson(fileName: "game_detail")
+        return response!
+    }
 }
 
 extension Bundle {

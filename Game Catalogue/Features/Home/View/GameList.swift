@@ -16,17 +16,9 @@ struct GameList: View {
                 ForEach(0 ..< games!.count) {index in
                     VStack {
                         ForEach(self.games![index]) {game in
-                            if index == 0 {
-                                GameCard(game: game)
-                                    .padding(.trailing, 8.0)
-                                    .padding(.leading, 0.0)
-                            } else if index == self.games!.count {
-                                GameCard(game: game)
-                                .padding(.trailing, 0.0)
-                                .padding(.leading, 8.0)
-                            } else {
-                                GameCard(game: game)
-                            }
+                            GameCard(game: game)
+                            .padding(.trailing, index == 0 ? 8.0 : 0.0)
+                            .padding(.leading, index != 0 ? 8.0 : 0.0)
                             Spacer(minLength: 24.0)
                         }
                         Spacer()
@@ -34,12 +26,11 @@ struct GameList: View {
                 }
             } else {
                 GameListEmpty()
-                    .padding(.trailing, 8.0)
+                Spacer(minLength: 16.0)
                 GameListEmpty()
-                    .padding(.leading, 8.0)
-                
             }
-        }.padding(.horizontal, 24.0)
+        }
+        .padding(.horizontal, 24.0)
         .frame(width: UIScreen.main.bounds.width)
     }
 }
@@ -53,10 +44,11 @@ struct GameListEmpty: View {
                         .fill(Color.greyishBrown)
                         .cornerRadius(8)
                         .frame(height: 236.0)
-                    Spacer(minLength: 24.0)
-                    ActivityIndicatorView()
+                    ActivityIndicatorView(style: .medium, color: .gray)
                 }
+                Spacer(minLength: 24.0)
             }
+           
         }
     }
 }

@@ -11,7 +11,6 @@ import Foundation
 struct GamesResponse: Codable {
     let count: Int
     let results: [Game]
-    
 }
 
 struct Game: Codable, Identifiable {
@@ -84,4 +83,64 @@ struct Platform: Codable, Identifiable {
             imageResName = nil
         }
     }
+}
+
+struct GameDetail: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let released: String
+    let backgroundImage: String
+    let rating: Double
+    let added: Int
+    let platforms: [Platforms]
+    let genres: [Genre]
+    let developers: [Developer]
+    let publishers: [Publisher]
+    let descriptionRaw: String
+    let website: String
+    
+    var developerString: String {
+        developers.map { developer in developer.name }.joined(separator: ", ")
+    }
+    
+    var genreString: String {
+        genres.map { genre in genre.name }.joined(separator: ", ")
+    }
+    
+    var publisherString: String {
+        publishers.map { publisher in publisher.name }.joined(separator: ", d")
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case released
+        case backgroundImage = "background_image"
+        case rating
+        case added
+        case platforms = "parent_platforms"
+        case genres
+        case developers
+        case publishers
+        case descriptionRaw = "description_raw"
+        case website
+    }
+}
+
+struct Genre: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let slug: String
+}
+
+struct Developer: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let slug: String
+}
+
+struct Publisher: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let slug: String
 }

@@ -14,8 +14,9 @@ struct GameCard: View {
     @ObservedObject var imageLoader = ImageLoader()
     
     var body: some View {
+        NavigationLink(destination: DetailView(gameId: game.id)) {
         VStack(alignment: .leading, spacing: 0) {
-            HStack {
+                HStack {
                 HStack {
                   Image("Plus")
                     Text(String(game.added))
@@ -74,6 +75,8 @@ struct GameCard: View {
                     .padding([.leading, .trailing], 8.0)
                 HStack {
                     Image("Star")
+                        .resizable()
+                        .frame(width: 10.0, height: 10.0)
                     Text(String(game.rating))
                         .font(.system(size: 10))
                         .foregroundColor(Color.white)
@@ -82,13 +85,13 @@ struct GameCard: View {
                 .padding(.bottom, 12.0)
                 .padding([.leading, .trailing], 8.0)
             }
-            .padding(0.0)
         .background(Color.greyishBrown)
             .cornerRadius(8.0)
         .onAppear {
             self.imageLoader.loadImage(with: URL(string: self.game.backgroundImage)!)
         }
         }
+    }
 }
 
 struct GameCard_Previews: PreviewProvider {

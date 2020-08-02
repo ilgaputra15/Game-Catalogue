@@ -21,4 +21,8 @@ class GameService {
     func getGames(platforms: String) -> Single<GamesResponse> {
         return provider.rx.request(.getGames(platforms), GamesResponse.self)
     }
+    
+    func getGame(id: Int) -> Single<GameDetail> {
+        return provider.rx.request(.getGame(id), GameDetail.self)
+    }
 }
