@@ -17,4 +17,5 @@ extension Color {
 
 extension UIColor {
     static var backgroundColor: UIColor = UIColor(red: 0.22, green: 0.22, blue: 0.22, alpha: 1.0)
+    static var transparant: UIColor = UIColor(white: 255, alpha: 0.0)
 }
