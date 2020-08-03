@@ -36,7 +36,7 @@ struct SearchBar: View {
 }
 
 struct SearchBarPreview: View {
-    @State private var searchText = "tex"
+    @State private var searchText = ""
     var body: some View {
         VStack {
             SearchBar(text: $searchText)

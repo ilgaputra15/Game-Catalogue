@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct KeywordLable: View {
+struct KeywordLableView: View {
     var name: String
     var isSelected: Bool
     var body: some View {
@@ -41,6 +41,6 @@ struct KeywordLable: View {
 
 struct KeywordLable_Previews: PreviewProvider {
     static var previews: some View {
-       KeywordLable(name: "Ilga", isSelected: false)
+       KeywordLableView(name: "Ilga", isSelected: false)
     }
 }

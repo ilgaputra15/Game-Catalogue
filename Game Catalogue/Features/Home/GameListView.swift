@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct GameList: View {
+struct GameListView: View {
     var games: [[Game]]?
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct GameList: View {
                             ForEach(0 ..< games!.count) {index in
                                 VStack {
                                     ForEach(self.games![index]) {game in
-                                        GameCard(game: game)
+                                        GameCardView(game: game)
                                             .padding(.trailing, index == 0 ? 8.0 : 0.0)
                                             .padding(.leading, index != 0 ? 8.0 : 0.0)
                                         Spacer(minLength: 24.0)
@@ -72,6 +72,6 @@ struct GameListEmpty: View {
 
 struct GameRow_Previews: PreviewProvider {
     static var previews: some View {
-        GameList(games: [[Game.stubbedGames[1], Game.stubbedGames[1]], [Game.stubbedGames[2]]])
+        GameListView(games: [[Game.stubbedGames[1], Game.stubbedGames[1]], [Game.stubbedGames[2]]])
     }
 }

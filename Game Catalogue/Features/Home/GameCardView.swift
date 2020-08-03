@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct GameCard: View {
+struct GameCardView: View {
     var game: Game
     
     @ObservedObject var imageLoader = ImageLoader()
@@ -96,6 +96,6 @@ struct GameCard: View {
 
 struct GameCard_Previews: PreviewProvider {
     static var previews: some View {
-        GameCard(game: Game.stubbedGames[5])
+        GameCardView(game: Game.stubbedGames[5])
     }
 }

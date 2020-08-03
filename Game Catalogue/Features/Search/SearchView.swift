@@ -25,7 +25,7 @@ struct SearchView: View {
                 SearchBar(text: $gamesState.searchValue)
                     .padding(.top, 16.0)
                 if self.gamesState.searchValue != "" {
-                    GameList(games: self.gamesState.games2Array)
+                    GameListView(games: self.gamesState.games2Array)
                         .padding(.bottom, 8.0)
                     
                 } else {

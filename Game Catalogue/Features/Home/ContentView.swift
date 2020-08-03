@@ -43,7 +43,7 @@ struct ContentView: View {
                                     self.keyword = keyword
                                     self.gameListState.loadGames(platforms: self.keyword.value)
                                 }) {
-                                    KeywordLable(name: keyword.rawValue, isSelected: self.keyword == keyword)
+                                    KeywordLableView(name: keyword.rawValue, isSelected: self.keyword == keyword)
                                 }
                             }
                         }
@@ -51,7 +51,7 @@ struct ContentView: View {
                         .padding(.vertical, 4.0)
                     }
                     Spacer(minLength: 16)
-                    GameList(games: self.gameListState.games2Array)
+                    GameListView(games: self.gameListState.games2Array)
                     HStack {
                         Spacer()
                         NavigationLink(destination: ProfileView()) {
