@@ -25,4 +25,8 @@ class GameService {
     func getGame(id: Int) -> Single<GameDetail> {
         return provider.rx.request(.getGame(id), GameDetail.self)
     }
+    
+    func searchGames(query: String) -> Single<GamesResponse> {
+        return provider.rx.request(.searchGames(query), GamesResponse.self)
+    }
 }

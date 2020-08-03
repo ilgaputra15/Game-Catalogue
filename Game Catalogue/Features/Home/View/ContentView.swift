@@ -23,6 +23,11 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 28))
                             .fontWeight(.bold)
+                        Spacer()
+                        NavigationLink(destination: SearchView()) {
+                            Image("Search")
+                                .frame(width: 20.0, height: 20.0)
+                        }
                     }.padding(.horizontal, 30.0)
                     Spacer(minLength: 4)
                     Text("Base on player counts and realise date")
@@ -46,9 +51,7 @@ struct ContentView: View {
                         .padding(.vertical, 4.0)
                     }
                     Spacer(minLength: 16)
-                    ScrollView {
-                        GameList(games: self.gameListState.games2Array)
-                    }
+                    GameList(games: self.gameListState.games2Array)
                     HStack {
                         Spacer()
                         NavigationLink(destination: ProfileView()) {

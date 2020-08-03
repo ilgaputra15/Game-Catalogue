@@ -27,6 +27,8 @@
 		EE8DA24524D5B74400F4052F /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA24424D5B74400F4052F /* NavigationBarModifier.swift */; };
 		EE8DA24724D5B77400F4052F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DA24624D5B77400F4052F /* View.swift */; };
 		EE8DA24924D66E6400F4052F /* game_detail.json in Resources */ = {isa = PBXBuildFile; fileRef = EE8DA24824D66E6400F4052F /* game_detail.json */; };
+		EE927BC324D6BE9F008C2BD5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE927BC224D6BE9F008C2BD5 /* SearchView.swift */; };
+		EE927BC524D6BF2F008C2BD5 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE927BC424D6BF2F008C2BD5 /* SearchBarView.swift */; };
 		EE93294624D6990C006FFE48 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93294524D6990C006FFE48 /* ProfileView.swift */; };
 		EEF15ED224D03D990059C1D0 /* GamesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF15ED124D03D990059C1D0 /* GamesApi.swift */; };
 		EEF15ED424D03DF00059C1D0 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF15ED324D03DF00059C1D0 /* BaseApi.swift */; };
@@ -63,6 +65,8 @@
 		EE8DA24424D5B74400F4052F /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		EE8DA24624D5B77400F4052F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EE8DA24824D66E6400F4052F /* game_detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = game_detail.json; sourceTree = "<group>"; };
+		EE927BC224D6BE9F008C2BD5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		EE927BC424D6BF2F008C2BD5 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		EE93294524D6990C006FFE48 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EEF15ED124D03D990059C1D0 /* GamesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesApi.swift; sourceTree = "<group>"; };
 		EEF15ED324D03DF00059C1D0 /* BaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				EE2E502324D29F9E00386B17 /* ActivityIndicatorView.swift */,
 				EE8DA24424D5B74400F4052F /* NavigationBarModifier.swift */,
+				EE927BC424D6BF2F008C2BD5 /* SearchBarView.swift */,
 			);
 			path = UIViews;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 		EE386D6E24CD6EB800FA59B7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EE927BC124D6BE8C008C2BD5 /* Search */,
 				EE93294424D698F7006FFE48 /* Profile */,
 				EEFAF9D824D2E03800F9B95C /* Detail */,
 				EEF15ECF24D03D610059C1D0 /* Data */,
@@ -193,6 +199,14 @@
 				EE7A111424CC683B00D47B14 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EE927BC124D6BE8C008C2BD5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EE927BC224D6BE9F008C2BD5 /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		EE93294424D698F7006FFE48 /* Profile */ = {
@@ -433,8 +447,10 @@
 				EE7A112824CD4E4A00D47B14 /* GameCard.swift in Sources */,
 				EEF15ED824D040160059C1D0 /* BuildConfig.swift in Sources */,
 				EEF15EDE24D063110059C1D0 /* GameService.swift in Sources */,
+				EE927BC324D6BE9F008C2BD5 /* SearchView.swift in Sources */,
 				EE7A112624CD4CDE00D47B14 /* Color.swift in Sources */,
 				EE2E501F24D2892900386B17 /* Games+Stub.swift in Sources */,
+				EE927BC524D6BF2F008C2BD5 /* SearchBarView.swift in Sources */,
 				EE2E502124D28FC900386B17 /* ImageLoader.swift in Sources */,
 				EEF15EDB24D0554C0059C1D0 /* Games.swift in Sources */,
 				EE8DA24524D5B74400F4052F /* NavigationBarModifier.swift in Sources */,
