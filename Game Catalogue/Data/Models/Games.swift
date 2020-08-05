@@ -16,11 +16,18 @@ struct GamesResponse: Codable {
 struct Game: Codable, Identifiable {
     let id: Int
     let name: String
-    let released: String
-    let backgroundImage: String
-    let rating: Double
-    let added: Int
-    let platforms: [Platforms]
+    let released: String?
+    let backgroundImage: String?
+    let rating: Double?
+    let added: Int?
+    let platforms: [Platforms]?
+    var releasedDate: String {
+      if released != nil {
+        return (released?.convertDateFormat(from: "yyyy-mm-dd", to: "MMM d, yyyy"))!
+      } else {
+        return "-"
+      }
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -88,27 +95,46 @@ struct Platform: Codable, Identifiable {
 struct GameDetail: Codable, Identifiable {
     let id: Int
     let name: String
-    let released: String
-    let backgroundImage: String
-    let rating: Double
-    let added: Int
-    let platforms: [Platforms]
-    let genres: [Genre]
-    let developers: [Developer]
-    let publishers: [Publisher]
+    let released: String?
+    let backgroundImage: String?
+    let rating: Double?
+    let added: Int?
+    let platforms: [Platforms]?
+    let genres: [Genre]?
+    let developers: [Developer]?
+    let publishers: [Publisher]?
     let descriptionRaw: String
     let website: String
+    var releasedDate: String {
+      if released != nil {
+        return (released?.convertDateFormat(from: "yyyy-mm-dd", to: "MMM d, yyyy"))!
+      } else {
+        return "-"
+      }
+    }
     
     var developerString: String {
-        developers.map { developer in developer.name }.joined(separator: ", ")
+      if let developers = developers {
+        return developers.map { developer in developer.name }.joined(separator: ", ")
+      } else {
+        return "-"
+      }
     }
     
     var genreString: String {
-        genres.map { genre in genre.name }.joined(separator: ", ")
+      if let genres = genres {
+        return genres.map { genre in genre.name }.joined(separator: ", ")
+      } else {
+        return "-"
+      }
     }
     
     var publisherString: String {
-        publishers.map { publisher in publisher.name }.joined(separator: ", d")
+      if let publishers = publishers {
+        return publishers.map { publisher in publisher.name }.joined(separator: ", ")
+      } else {
+        return "-"
+      }
     }
     
     enum CodingKeys: String, CodingKey {

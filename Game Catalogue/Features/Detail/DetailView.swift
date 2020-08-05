@@ -53,7 +53,7 @@ struct GameDetailView: View {
             HStack(alignment: .center) {
                 HStack {
                   Image("Plus")
-                    Text(String(game.added))
+                    Text(game.added == nil ? "-" : String(game.added!))
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -68,12 +68,13 @@ struct GameDetailView: View {
                     .resizable()
                         .frame(width: 18.0, height: 18.0)
                         .aspectRatio(contentMode: .fit)
-                    Text(String(game.rating))
+                    Text(game.rating == nil ? "-" : String(game.rating!))
                         .font(.system(size: 16))
                         .foregroundColor(Color.white)
                 }
                 Spacer()
-                ForEach(self.game.platforms) { platform in
+              if self.game.platforms != nil {
+                ForEach(self.game.platforms!) { platform in
                     HStack {
                         if platform.platform.imageResName != nil {
                             Image(platform.platform.imageResName!)
@@ -82,11 +83,16 @@ struct GameDetailView: View {
                         }
                     }
                 }
+              }
             }
             .padding(.horizontal, 24.0)
             Spacer(minLength: 32)
         }.onAppear {
-            self.imageLoader.loadImage(with: URL(string: self.game.backgroundImage)!)
+          if let image = self.game.backgroundImage {
+            self.imageLoader.loadImage(with: URL(string: image)!)
+          } else {
+            self.imageLoader.image = UIImage(named: "temp image")
+          }
         }
     }
 }
@@ -133,7 +139,7 @@ struct GameDetailDescView: View {
                         .foregroundColor(Color.white)
                         .font(.system(size: 16))
                     Spacer(minLength: 6.0)
-                    Text(game.released.convertDateFormat(from: "yyyy-mm-dd", to: "MMM d, yyyy"))
+                    Text(game.releasedDate)
                         .fontWeight(.light)
                         .foregroundColor(Color.white)
                         .font(.system(size: 12))
@@ -162,9 +168,9 @@ struct GameDetailDescView: View {
                 .font(.system(size: 24))
                 .padding(.leading, 24.0)
             Spacer(minLength: 12)
-            Text(game.descriptionRaw)
+          Text(game.descriptionRaw)
+            .fixedSize(horizontal: false, vertical: true)
                 .font(.system(size: 14))
-                .fontWeight(.regular)
                 .foregroundColor(Color.white)
                 .padding(.horizontal, 24.0)
                 .lineLimit(nil)
