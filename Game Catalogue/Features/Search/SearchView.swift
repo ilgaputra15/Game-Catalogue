@@ -38,8 +38,9 @@ struct SearchView: View {
                 }
             }
         }
-        .navigationBarTitle("Search Games", displayMode: .inline)
+        .navigationBarTitle("Search", displayMode: .inline)
         .buttonStyle(PlainButtonStyle())
+          .navigationBarHidden(true)
         .onAppear {
             self.gamesState.setupDebouceSearchGames()
         }

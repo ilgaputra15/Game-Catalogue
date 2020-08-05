@@ -25,6 +25,7 @@ class GamesState: ObservableObject {
     }
     
     func setupDebouceSearchGames() {
+      if cancellable == nil {
         cancellable = AnyCancellable($searchValue.removeDuplicates()
             .debounce(for: 1.0, scheduler: DispatchQueue.main)
             .sink { searchText in
@@ -33,6 +34,7 @@ class GamesState: ObservableObject {
                     self.searchGames(query: searchText)
                 }
         })
+      }
     }
     
     func loadGames(platforms: String) {
