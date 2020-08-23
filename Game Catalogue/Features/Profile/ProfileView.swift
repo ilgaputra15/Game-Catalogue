@@ -42,9 +42,8 @@ struct ProfileView: View {
                         .padding(.vertical, 12)
                         .modifier(EditingTextFieldMofier(isEditing: isEditing))
                 }
-                .padding(.top, 24.0)
+                .padding(.top, 20.0)
                 .padding(.horizontal, 32.0)
-                    
                 HStack {
                     Text("Github:")
                         .font(.system(size: 16))
@@ -92,18 +91,6 @@ struct EditingTextFieldMofier: ViewModifier {
             .disabled(!isEditing)
     }
 }
-
-//struct DisableTextField: ViewModifier {
-//    func body(content: Content) -> some View {
-//        content
-//            .padding(10)
-//            .font(Font.system(size: 32, weight: .light, design: .default))
-//            .foregroundColor(Color.white)
-//            .padding(.top, 36.0)
-//            .padding(.horizontal, 24.0)
-//            .disabled(true)
-//    }
-//}
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
