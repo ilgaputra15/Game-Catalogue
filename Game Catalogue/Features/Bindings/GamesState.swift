@@ -15,13 +15,16 @@ class GamesState: ObservableObject {
     @Published var games2Array: [[Game]]?
     @Published var game: GameDetail?
     @Published var searchValue: String = ""
+    @Published var isFavorite: Bool = false
     
     private var cancellable: AnyCancellable?
     private let gameService: GameService
+    private let gameDbProvider: GameDBProvider
     private let disposable: DisposeBag = DisposeBag()
     
-    init(gameSevice: GameService = GameService.shared) {
+    init(gameSevice: GameService = GameService.shared, gameDbProvider: GameDBProvider = GameDBProvider.shared) {
         self.gameService = gameSevice
+        self.gameDbProvider = gameDbProvider
     }
     
     func setupDebouceSearchGames() {
@@ -55,6 +58,7 @@ class GamesState: ObservableObject {
     }
     
     func loadGame(id: Int) {
+        getGameFavorite(id: id)
         self.game = nil
         gameService.getGame(id: id)
             .subscribe { [weak self] (result) in
@@ -103,5 +107,25 @@ class GamesState: ObservableObject {
             arrays = [game1, game2]
         }
         return arrays
+    }
+    
+    func getGameFavorite(id: Int) {
+        gameDbProvider.isGameFovorite(id: id) { (isFavorite) in
+            self.isFavorite = isFavorite
+        }
+    }
+    
+    func saveOrDeleteGame() {
+        if let game = game {
+            if !isFavorite {
+                gameDbProvider.saveGame(game: game) { (isSave) in
+                    if isSave { self.isFavorite = true }
+                }
+            } else {
+                gameDbProvider.deleteGameFromLocal(id: game.id) { (isDelete) in
+                    if isDelete { self.isFavorite = false }
+                }
+            }
+        }
     }
 }

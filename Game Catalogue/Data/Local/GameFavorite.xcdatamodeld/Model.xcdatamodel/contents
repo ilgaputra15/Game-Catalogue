@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GameDB" representedClassName="GameDB" syncable="YES">
+        <attribute name="added" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="backgroundUrl" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="released" optional="YES" attributeType="String"/>
+        <relationship name="platform" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlatformDB" inverseName="ofGame" inverseEntity="PlatformDB"/>
+    </entity>
+    <entity name="PlatformDB" representedClassName="PlatformDB" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
+        <relationship name="ofGame" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GameDB" inverseName="platform" inverseEntity="GameDB"/>
+    </entity>
+    <elements>
+        <element name="GameDB" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="PlatformDB" positionX="-45" positionY="63" width="128" height="103"/>
+    </elements>
+</model>

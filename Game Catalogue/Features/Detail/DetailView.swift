@@ -25,6 +25,14 @@ struct DetailView: View {
         .background(Color.backgroundColor)
         .navigationBarTitle(Text(self.gamesState.game?.name ?? "Detail"), displayMode: .inline)
         .navigationBarColor(UIColor.backgroundColor)
+        .navigationBarItems(trailing:
+            Button(action: {
+                self.gamesState.saveOrDeleteGame()
+                print("Edit button was tapped")
+            }) {
+                gamesState.isFavorite == true ? Image("Favorite Full") : Image("Favorite")
+            }
+        )
         .onAppear {
             self.gamesState.loadGame(id: self.gameId)
         }
@@ -194,6 +202,6 @@ struct GameDetailDescView: View {
 
 struct DetailUIView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(gameId: 1)
+        DetailView(gameId: 100)
     }
 }
