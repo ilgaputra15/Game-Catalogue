@@ -32,6 +32,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = HostingController(rootView: contentView)
             self.window = window
+            ProfileStorage.synchronize()
+            if !ProfileStorage.isSetProfile {
+                ProfileStorage.email = "ilga.putra15@gmail.com"
+                ProfileStorage.name = "Ilga Yulian Putra D"
+                ProfileStorage.githubLink = "https://github.com/ilgaputra15"
+                ProfileStorage.isSetProfile = true
+            }
             window.makeKeyAndVisible()
         }
     }

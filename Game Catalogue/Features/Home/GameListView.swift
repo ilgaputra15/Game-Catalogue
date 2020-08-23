@@ -28,6 +28,13 @@ struct GameListView: View {
                                     Spacer()
                                 }
                             }
+                            if (games![1].count == 0) && (games![0].count != games![1].count) {
+                                VStack {
+                                  Rectangle()
+                                    .fill(Color.backgroundColor)
+                                    .cornerRadius(8)
+                                }
+                            }
                         }.padding(.horizontal, 24.0)
                     }
                 } else {

@@ -29,7 +29,9 @@ struct ContentView: View {
           Text("Search")
           Image(systemName: "magnifyingglass")
         }
-      ProfileView()
+        NavigationView {
+            ProfileView()
+        }
         .tabItem {
           Text("Profile Developer")
           Image(systemName: "person.circle.fill")
