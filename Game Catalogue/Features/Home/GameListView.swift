@@ -10,6 +10,7 @@ import SwiftUI
 
 struct GameListView: View {
     var games: [[Game]]?
+    var errorMessage: String = "No Results"
     var body: some View {
         VStack {
             if games != nil {
@@ -32,7 +33,7 @@ struct GameListView: View {
                 } else {
                     VStack {
                         Spacer()
-                        Text("No Results")
+                        Text(errorMessage)
                             .fontWeight(.bold)
                             .foregroundColor(Color.white.opacity(0.7))
                         Spacer()

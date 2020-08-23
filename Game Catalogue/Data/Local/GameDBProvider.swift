@@ -73,6 +73,32 @@ class GameDBProvider {
         
     }
     
+    func getAllGameFromLocal(completion: @escaping(_ game: [Game]) -> Void) {
+        let context = managedObjectContext()
+        context.performAndWait {
+            var games: [Game] = []
+            let fetchRequest = GameDB.fetchDataRequest()
+            do {
+                let results = try context.fetch(fetchRequest)
+                
+                for result in results {
+                    let game = Game(
+                        id: Int(result.id),
+                        name: result.name ?? "",
+                        released: result.released,
+                        backgroundImage: result.backgroundUrl,
+                        rating: result.rating, added: Int(result.added),
+                        platforms: nil)
+                    games.append(game)
+                }
+                completion(games)
+            } catch let error as NSError {
+                completion(games)
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
     func getGameFromLocal(id: Int, completion: @escaping(_ game: Game?) -> Void) {
         let context = managedObjectContext()
         context.performAndWait {

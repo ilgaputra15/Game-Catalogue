@@ -13,6 +13,7 @@ import Combine
 class GamesState: ObservableObject {
     @Published var games: [Game]?
     @Published var games2Array: [[Game]]?
+    @Published var gameFavorites: [[Game]]?
     @Published var game: GameDetail?
     @Published var searchValue: String = ""
     @Published var isFavorite: Bool = false
@@ -112,6 +113,16 @@ class GamesState: ObservableObject {
     func getGameFavorite(id: Int) {
         gameDbProvider.isGameFovorite(id: id) { (isFavorite) in
             self.isFavorite = isFavorite
+        }
+    }
+    
+    func getGameFavorites() {
+        gameDbProvider.getAllGameFromLocal { (games) in
+            if games.isEmpty {
+                self.gameFavorites = []
+            } else {
+                self.gameFavorites = self.convertArrayToArrays(games: games)
+            }
         }
     }
     

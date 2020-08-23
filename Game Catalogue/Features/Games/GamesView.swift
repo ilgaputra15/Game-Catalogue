@@ -11,7 +11,6 @@ import SwiftUI
 struct GamesView: View {
     @ObservedObject private var gameListState = GamesState()
     @State var keyword: Gamekeyword = .all
-    @State var navBarHidden: Bool = false
     var body: some View {
         ZStack {
             Color.backgroundColor.edgesIgnoringSafeArea(.all)
@@ -23,6 +22,9 @@ struct GamesView: View {
                         .font(.system(size: 28))
                         .fontWeight(.bold)
                     Spacer()
+                    NavigationLink(destination: FavoritesView()) {
+                        Image("Favorite Full")
+                    }
                 }.padding(.horizontal, 30.0)
                 Spacer(minLength: 4)
                 Text("Base on player counts and realise date")
@@ -55,7 +57,7 @@ struct GamesView: View {
                 }
             }
         .navigationBarTitle("", displayMode: .inline)
-        .navigationBarHidden(true)
+        .navigationBarHidden(false)
         .buttonStyle(PlainButtonStyle())
         .navigationBarColor(UIColor.transparant)
       }

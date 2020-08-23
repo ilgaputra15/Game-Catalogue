@@ -35,6 +35,7 @@
 		EE99CA9124F0D805004F0DE3 /* PlatformDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99CA8C24F0D805004F0DE3 /* PlatformDB+CoreDataClass.swift */; };
 		EE99CA9224F0D805004F0DE3 /* GameDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99CA8F24F0D805004F0DE3 /* GameDB+CoreDataProperties.swift */; };
 		EE99CA9324F0D805004F0DE3 /* PlatformDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99CA8D24F0D805004F0DE3 /* PlatformDB+CoreDataProperties.swift */; };
+		EEBC62C324F291CD00D676C9 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC62C224F291CD00D676C9 /* FavoritesView.swift */; };
 		EED4AEA124DA5B7800C468BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4AEA024DA5B7800C468BD /* ContentView.swift */; };
 		EEF15ED224D03D990059C1D0 /* GamesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF15ED124D03D990059C1D0 /* GamesApi.swift */; };
 		EEF15ED424D03DF00059C1D0 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF15ED324D03DF00059C1D0 /* BaseApi.swift */; };
@@ -80,6 +81,7 @@
 		EE99CA8D24F0D805004F0DE3 /* PlatformDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PlatformDB+CoreDataProperties.swift"; path = "/Users/ilgaputra15/ilga/Development/iOS/Game Catalogue/Game Catalogue/Data/Local/PlatformDB+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		EE99CA8E24F0D805004F0DE3 /* GameDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GameDB+CoreDataClass.swift"; path = "/Users/ilgaputra15/ilga/Development/iOS/Game Catalogue/Game Catalogue/Data/Local/GameDB+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		EE99CA8F24F0D805004F0DE3 /* GameDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GameDB+CoreDataProperties.swift"; path = "/Users/ilgaputra15/ilga/Development/iOS/Game Catalogue/Game Catalogue/Data/Local/GameDB+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		EEBC62C224F291CD00D676C9 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		EED4AEA024DA5B7800C468BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EEF15ED124D03D990059C1D0 /* GamesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesApi.swift; sourceTree = "<group>"; };
 		EEF15ED324D03DF00059C1D0 /* BaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		EE386D6E24CD6EB800FA59B7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EEBC62C124F291B300D676C9 /* Favorites */,
 				EED4AE9F24DA5B5900C468BD /* Games */,
 				EEF15EDF24D064D30059C1D0 /* Bindings */,
 				EE927BC124D6BE8C008C2BD5 /* Search */,
@@ -233,6 +236,14 @@
 				EE99CA7924EF6BE7004F0DE3 /* GameFavorite.xcdatamodeld */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		EEBC62C124F291B300D676C9 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				EEBC62C224F291CD00D676C9 /* FavoritesView.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		EED4AE9F24DA5B5900C468BD /* Games */ = {
@@ -341,6 +352,7 @@
 				EE7A110524CC683600D47B14 /* Frameworks */,
 				EE7A110624CC683600D47B14 /* Resources */,
 				1D54E1D332253E08E0F582CB /* [CP] Embed Pods Frameworks */,
+				EEA58ABA24F2AB470094B9CD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -439,6 +451,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EEA58ABA24F2AB470094B9CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n  buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n  buildNumber=$(($buildNumber + 1))\n  /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nelse\n  echo \"Skipping Bump of version\"\n  echo $ENABLE_PREVIEWS\nfi\n";
+		};
 		EEF15ECE24D032600059C1D0 /* Run Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -475,6 +504,7 @@
 				EE2E501F24D2892900386B17 /* Games+Stub.swift in Sources */,
 				EE927BC524D6BF2F008C2BD5 /* SearchBarView.swift in Sources */,
 				EE2E502124D28FC900386B17 /* ImageLoader.swift in Sources */,
+				EEBC62C324F291CD00D676C9 /* FavoritesView.swift in Sources */,
 				EEF15EDB24D0554C0059C1D0 /* Games.swift in Sources */,
 				EE8DA24524D5B74400F4052F /* NavigationBarModifier.swift in Sources */,
 				EE386D7324CD6EF500FA59B7 /* KeywordLabelView.swift in Sources */,
