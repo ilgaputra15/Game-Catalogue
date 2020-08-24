@@ -82,13 +82,19 @@ class GameDBProvider {
                 let results = try context.fetch(fetchRequest)
                 
                 for result in results {
+                    var platforms: [Platforms] = []
+                    if let setPlatforms = result.platform as? Set<PlatformDB> {
+                        for platform in setPlatforms {
+                            platforms.append(Platforms(platform: Platform(id: Int(platform.id), name: platform.name ?? "", slug: platform.slug ?? "")))
+                        }
+                    }
                     let game = Game(
                         id: Int(result.id),
                         name: result.name ?? "",
                         released: result.released,
                         backgroundImage: result.backgroundUrl,
                         rating: result.rating, added: Int(result.added),
-                        platforms: nil)
+                        platforms: platforms)
                     games.append(game)
                 }
                 completion(games)

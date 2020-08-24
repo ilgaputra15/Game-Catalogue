@@ -71,23 +71,16 @@ struct Platform: Codable, Identifiable {
     let id: Int
     let name: String
     let slug: String
-    let imageResName: String?
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        slug = try container.decode(String.self, forKey: .slug)
-        let id = try container.decode(Int.self, forKey: .id)
+    var imageResName: String? {
         switch id {
         case 1:
-            imageResName = "Windows"
+            return "Windows"
         case 2:
-            imageResName = "PlayStation"
+            return "PlayStation"
         case 3:
-            imageResName = "X-Box"
+            return "X-Box"
         default:
-            imageResName = nil
+            return nil
         }
     }
 }
